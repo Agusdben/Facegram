@@ -1,0 +1,36 @@
+.menu{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    width: 100vw;
+    border-top: 1px solid var(--colorBorder);
+    background-color: var(--color2);
+
+}
+
+.menu__list{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    height: 1em;
+}
+
+.menu__item{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3em;
+    width: 75px;
+}
+
+@media (min-width: 768px) {
+    .menu{
+        position: relative;
+        top: 0;
+        border: none;
+        width: 33%;
+    }
+
+}
