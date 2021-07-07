@@ -2,11 +2,12 @@
 @import url(./blocks/header.css);
 @import url(./blocks/menu.css);
 @import url(./blocks/post.css);
+@import url(./blocks/comments.css);
 
 :root{
     --color1: #333;
     --color2: #222;
-    --color3: #444;
+    --color3: #343434;
     --iconColor: #5e91ff;
     --colorBorder: #111
 }
@@ -62,10 +63,10 @@ main{
 .button{
     border-radius: 20px;
     padding: .3em 0;
+    user-select: none;
 }
 
 .button:hover{
     cursor: pointer;
     background-color: var(--color3);
 }
-

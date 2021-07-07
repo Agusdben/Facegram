@@ -1,0 +1,27 @@
+.comments{
+    max-height: 0;
+    display: none;
+    overflow: hidden;
+    border-top: 1px solid var(--colorBorder);
+    padding: .5em;
+}
+
+.comment__container{
+    padding: .7em;
+    margin: .5em .5em;
+    border-radius: 20px;
+    background-color: var(--color3);
+}
+
+.comment__name::first-letter,
+.comment__body::first-letter{
+    text-transform: uppercase;
+}
+
+.comment__email{
+    font-weight: 300;
+}
+
+.comment__body{
+    padding-top: 1em;
+}

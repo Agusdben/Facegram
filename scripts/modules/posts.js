@@ -1,12 +1,14 @@
+import {commentsView} from './comments.js'
+
 async function getAllPost() {
     const response = await fetch('https://jsonplaceholder.typicode.com/posts')
     const posts = await response.json()
     return posts    
 }
 
-const postsView = (post, user, container)=>{
+const postsView = (post, user, comments, container)=>{
     container.innerHTML += `
-    <div class="post" idPost=${post.id}>
+    <div class="post">
         <div class="post__header">
             <div class="post__img">
                 <h3 class="post__userimage">${user.id}</h3>
@@ -24,7 +26,10 @@ const postsView = (post, user, container)=>{
             <div class="post__like button"><i class="fas fa-heart"></i>Like</div>
             <div class="post__comments button"><i class="far fa-comment-dots"></i>Comments</div>
         </div>
-    </div>
+        <div class="comments" expanded="false">
+            <h3 class="comments__title">Comments:</h3>
+            ${commentsView(comments)}
+        </div></div>
     `
 }
 

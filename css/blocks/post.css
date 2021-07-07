@@ -3,13 +3,13 @@
     margin: 1em auto;
     border: 1px solid var(--colorBorder);
     border-radius: 20px;
-    padding-bottom: 1em;
-
+    background-color: var(--color2);
 }
 
 .post__title,
 .post__header,
-.post__body{
+.post__body,
+.post__controls{
     padding: .5em;
 }
 
@@ -51,7 +51,9 @@
     margin: auto;
     justify-content: space-around;
     text-align: center;
+    border-top: 1px solid var(--colorBorder);
 }
+
 .post__controls > *{
     width: 150px;
 }
@@ -61,5 +63,8 @@
 }
 
 .post__controls {
-    cursor: pointer;
+}
+
+.post__name{
+    font-weight: 300;
 }
