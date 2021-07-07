@@ -4,4 +4,8 @@ async function getAllUsers(){
     return users
 }
 
+function userView(idUser) {
+    
+}
+
 export {getAllUsers}

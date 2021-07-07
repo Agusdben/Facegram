@@ -46,6 +46,14 @@
     border-radius: 50%;
 }
 
+.post__username:hover{
+    text-decoration: underline;
+}
+
+.post__username:hover, .post__userimage:hover{
+    cursor: pointer;
+}
+
 .post__controls{
     display: flex;
     margin: auto;
@@ -60,9 +68,6 @@
 
 .post__controls i{
     margin-right: .3em;
-}
-
-.post__controls {
 }
 
 .post__name{

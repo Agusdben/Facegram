@@ -17,6 +17,7 @@ function commentsView (comments) {
         <div class="comment__container">
             <h3 class="comment__name">${comment.name}</h3>
             <h5 class="comment__email">${comment.email}</h5>
+            <hr>
             <p class="comment__body">${comment.body}</p>
         </div>
         `
