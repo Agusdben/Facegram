@@ -23,8 +23,8 @@ const postsView = (post, user, comments, container)=>{
             <p class="post__body">${post.body}</p>
         </div>
         <div class="post__controls">
-            <div class="post__like button"><i class="fas fa-heart"></i>Like</div>
-            <div class="post__comments button"><i class="far fa-comment-dots"></i>Comments</div>
+            <div class="post__like-btn button"><i class="fas fa-heart"></i>Like</div>
+            <div class="post__comments-btn button"><i class="far fa-comment-dots"></i>Comments</div>
         </div>
         <div class="comments" expanded="false">
             <h3 class="comments__title">Comments:</h3>

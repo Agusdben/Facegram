@@ -18,10 +18,6 @@
     text-transform: uppercase;
 }
 
-.comment__email{
-    font-weight: 300;
-}
-
 .comment__body{
     padding-top: .3em;
 }

@@ -1,15 +1,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap');
+@import url(./blocks/loader.css);
 @import url(./blocks/header.css);
 @import url(./blocks/menu.css);
 @import url(./blocks/post.css);
 @import url(./blocks/comments.css);
+@import url(./blocks/user.css);
 
 :root{
     --color1: #333;
     --color2: #222;
     --color3: #343434;
     --iconColor: #5e91ff;
-    --colorBorder: #111
+    --colorBorder: #111;
 }
 
 *,
@@ -31,6 +33,18 @@ body{
 h1,h2,h3,h4,h5,h6,p{
     margin: 0;
     padding: 0;
+}
+
+h3{
+    font-weight: 500;
+}
+
+h5{
+    font-weight: 200;
+}
+
+p{
+    font-weight: 300;
 }
 
 i{
@@ -56,6 +70,8 @@ input:focus{
 }
 
 main{
+    min-height: 100vh;
+    position: relative;
     padding: .5em;
     background-color: var(--color1);
 }
@@ -69,4 +85,5 @@ main{
 .button:hover{
     cursor: pointer;
     background-color: var(--color3);
+    transition: background-color 100ms ease-in-out;
 }

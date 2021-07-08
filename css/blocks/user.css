@@ -1,0 +1,73 @@
+.user__coverpage{
+    position: relative;
+    height:clamp(100px, 30vh, 450px);
+    width: 100%;
+    max-width: 768px;
+    margin: auto;
+    background-color: var(--color2);
+    border-radius: 5px;
+
+}
+
+.user__card{
+    position: absolute;
+    top: 75%;
+    width: inherit;
+    max-width: inherit;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+.user__img{
+    margin: 0;
+}
+
+.user__userimage{
+    width: 100px;
+    height: 100px;
+    margin: auto;
+}
+
+.user__username,
+.user__name{
+    text-align: center;
+}
+
+.user__username:hover,
+.user__img:hover{
+    cursor: default;
+    text-decoration: none;
+}
+
+.user__controlls{
+    max-width: 768px;
+    display: flex;
+    margin: auto;
+    justify-content: space-evenly;
+    background-color: var(--color2);
+    padding: .5em 0;
+    margin-top: 150px;
+    border-radius: 5px;
+}
+
+.user__controlls > * {
+    width: 33%;
+    text-align: center;
+}
+
+.user__controlls p {
+    display: none;
+}
+
+[class *= '-btn']{
+    max-width: 120px;
+}
+
+@media (min-width: 450px) {
+    .user__controlls p {
+        display: inline-block;
+    }
+    
+}
