@@ -4,7 +4,6 @@ import { getAllPost, postsView } from "./modules/posts.js";
 import {getAllUsers} from './modules/users.js'
 import {getAllComments} from './modules/comments.js'
 
-const $main = document.querySelector('.main-index')
 const $loader = document.querySelector('.loader') 
 let posts = []
 let users = []
@@ -13,7 +12,6 @@ let comments = []
 document.addEventListener('DOMContentLoaded', async ()=>{
     try{
         posts = await getAllPost()
-        console.log(posts);
         users = await getAllUsers()
         comments = await getAllComments()
     }catch (e) {
@@ -58,6 +56,7 @@ const postsMixer = () => {
         const post = posts[--postId]
         let user = users[--post.userId]
         const commentsXpost = searchCommentsXidPost(post.id)
+        const $main = document.querySelector('.main-index')
         postsView(post, user, commentsXpost, $main)
     }while (postsIds.length > 0)
 }

@@ -5,6 +5,7 @@
 @import url(./blocks/post.css);
 @import url(./blocks/comments.css);
 @import url(./blocks/user.css);
+@import url(./blocks/info.css);
 
 :root{
     --color1: #333;

@@ -22,6 +22,7 @@
 
 .user__img{
     margin: 0;
+    margin-bottom: .5em;
 }
 
 .user__userimage{
@@ -63,6 +64,11 @@
 
 [class *= '-btn']{
     max-width: 120px;
+}
+
+.user__content{
+    max-width: 768px;
+    margin: auto;
 }
 
 @media (min-width: 450px) {
