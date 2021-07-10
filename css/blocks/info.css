@@ -1,9 +1,8 @@
 .info{
-    max-width: 768px;
+    max-width: 1024px;
     margin: auto;
     margin-top: 1em;
     margin-bottom: 100px;
-    padding: .5em;
 }
 
 .info__title{
@@ -53,7 +52,7 @@
     }
 
     .info__controlls{
-        width: 50%;
+        width: 30%;
         border-right: 1px solid var(--colorBorder);
         border-top-right-radius: 0;
         border-bottom-right-radius: 0;
@@ -62,9 +61,20 @@
         flex-direction: column;
         align-items: center;
     }
+    .info__controlls > *{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 30%;
+        width: 90%;
+    }
+    
+    .info__controlls > *:hover{
+        color: var(--iconColor);
+    }
 
     .info__container{
-        width: 50%;
+        width: 70%;
         margin-top: 0;
         border-radius: 10px;
         border-top-left-radius: 0;

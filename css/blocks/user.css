@@ -1,17 +1,16 @@
 .user__coverpage{
     position: relative;
-    height:clamp(100px, 30vh, 450px);
+    height: 300px;
     width: 100%;
-    max-width: 768px;
+    max-width: 1024px;
     margin: auto;
     background-color: var(--color2);
     border-radius: 5px;
-
 }
 
 .user__card{
     position: absolute;
-    top: 75%;
+    top: 85%;
     width: inherit;
     max-width: inherit;
     display: flex;
@@ -43,7 +42,7 @@
 }
 
 .user__controlls{
-    max-width: 768px;
+    max-width: 1024px;
     display: flex;
     margin: auto;
     justify-content: space-evenly;
@@ -62,12 +61,8 @@
     display: none;
 }
 
-[class *= '-btn']{
-    max-width: 120px;
-}
-
 .user__content{
-    max-width: 768px;
+    max-width: 1024px;
     margin: auto;
 }
 

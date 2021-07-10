@@ -70,18 +70,22 @@ const searchCommentsXidPost = idPost => {
 }
 
 function handleComments(){
+    //this reference the button of comments clicked
     const $comments= this.parentNode.parentNode.lastChild
     const expanded = $comments.getAttribute('expanded')
     if(expanded == 'false') {
         $comments.style.display = 'block'
         $comments.style.maxHeight = 'fit-content'
+        this.style.backgroundColor = 'var(--color3)'
         $comments.setAttribute('expanded', 'true')
     }
     if(expanded == 'true'){
         $comments.style.display = 'none'
         $comments.style.maxHeight = '0'
+        this.style.backgroundColor = 'transparent'
         $comments.setAttribute('expanded', 'false')
     }
+
 }
 
 function findUserFromUsername(){
@@ -99,4 +103,4 @@ const toUserPage = ($userName) => {
     window.location = `/pages/user.html?username=${$userName}`
 }
 
-export {searchCommentsXidPost, handleComments}
+export {searchCommentsXidPost, handleComments, findUserFromUsername, findUserFromUserimage}

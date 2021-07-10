@@ -1,11 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap');
 @import url(./blocks/loader.css);
+@import url(./blocks/buttons.css);
 @import url(./blocks/header.css);
 @import url(./blocks/menu.css);
 @import url(./blocks/post.css);
 @import url(./blocks/comments.css);
 @import url(./blocks/user.css);
 @import url(./blocks/info.css);
+@import url(./blocks/album.css);
 
 :root{
     --color1: #333;
@@ -24,6 +26,7 @@
 body{
     min-width: 100vw;
     min-height: 100vh;
+    max-width: 1920px;
     overflow-x: hidden;
     font-size: 1em;
     color: #fff;
@@ -77,14 +80,6 @@ main{
     background-color: var(--color1);
 }
 
-.button{
-    border-radius: 20px;
-    padding: .3em 0;
-    user-select: none;
-}
-
-.button:hover{
-    cursor: pointer;
-    background-color: var(--color3);
-    transition: background-color 100ms ease-in-out;
+img{
+    max-width: 100%;
 }
