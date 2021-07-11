@@ -2,7 +2,7 @@ import {handleComments, searchCommentsXidPost} from "./main.js"
 import {getAllPost, postsView} from "./modules/posts.js"
 import {getAllUsers, userAddressInfoView, userBasicInfoView, userInformationView, userView, userWorkInfoView} from "./modules/users.js"
 import { albumsView, getAllAlbums } from "./modules/albums.js"
-import { getAllPhotos } from "./modules/photos.js"
+import { getAllPhotos, pohotosView } from "./modules/photos.js"
 
 const $main = document.querySelector('.main')
 let posts = []
@@ -11,7 +11,7 @@ let albums = []
 let photos = []
 let $userContent //this container load content when you click in a button (posts, information, albums)
 let user
-let userAlbumHTML
+
 document.addEventListener('DOMContentLoaded', async ()=>{
     try{
         posts = await getAllPost()
@@ -35,12 +35,13 @@ const controller = () =>{
     const $informationButton = document.querySelector('.user__information-btn')
     $informationButton.addEventListener('click', handleInfo)
 
+    const $albumsButton = document.querySelector('.user__albums-btn')
+    $albumsButton.addEventListener('click', handleAlbums)
+    
     const $postsButton = document.querySelector('.user__posts-btn')
     $postsButton.addEventListener('click', ()=>{controller()})
     $postsButton.style.backgroundColor = 'var(--color3)'
 
-    const $albumsButton = document.querySelector('.user__albums-btn')
-    $albumsButton.addEventListener('click', handleAlbums)
 
     const $postUsername = document.querySelectorAll('.post__username')
     $postUsername.forEach(element =>{
@@ -69,7 +70,7 @@ const load = () => {
 }
 
 function handleInfo() {
-    resetUserControllsBtnStyle(this)
+    resetUserControllsBtnStyle()
     this.style.backgroundColor = 'var(--color3)'
 
     $userContent.innerHTML = userInformationView(user)
@@ -111,20 +112,13 @@ const handleInfoBtnStyle = () => {
     })
 }
 
-const resetUserControllsBtnStyle = (thisElement) => {
+const resetUserControllsBtnStyle = () => {
     const $userControllsBtn = document.querySelector('.user__controlls').querySelectorAll('[class *= "-btn"]')
-    $userControllsBtn.forEach( element => {
-        element.style.backgroundColor = 'transparent'
-        element.addEventListener('mouseover', ()=> element.style.backgroundColor = 'var(--color3)')
-        element.addEventListener('mouseleave', ()=> {
-            if(thisElement != element) element.style.backgroundColor = 'transparent' //thisElement referece the last button clicked
-        })
-    })
+    $userControllsBtn.forEach( element => {element.style.backgroundColor = 'transparent'})
 }
 
 function handleAlbums(){
-    resetUserControllsBtnStyle(this)
-    console.log(this);
+    resetUserControllsBtnStyle()
     this.style.backgroundColor = 'var(--color3)'
 
     const albumsXuser = albums.filter( album => album.userId == user.id)
@@ -132,12 +126,39 @@ function handleAlbums(){
     $userContent.innerHTML = ''
     const albumContainer = document.createElement('div')
     albumContainer.classList.add('albums__container')
+    const h3 = document.createElement('h3')
+    h3.classList.add('Albums__title')
+    h3.innerText = 'Albums'
+    albumContainer.append(h3)
     $userContent.append(albumContainer)
     const container = $userContent.querySelector('.albums__container')
+
     let albumsHTML = ''
+    let photosXalbums = []
     albumsXuser.map( album => {
         const photosXalbum = photos.filter( photo => photo.albumId == album.id)
+        photosXalbums.push(photosXalbum)
         albumsHTML += albumsView(album, photosXalbum) 
     })
-    container.innerHTML = albumsHTML
+    container.innerHTML += albumsHTML
+
+    const albumsTitle = document.querySelectorAll('.album__title')
+    albumsTitle.forEach( element => {
+        element.addEventListener('click', handleModalPhotosTitle)
+    })
+}
+
+
+function handleModalPhotosTitle(){
+    let album = albums.filter( album => album.title == this.innerText.toLowerCase())
+    album = album[0]
+    const photosXalbum = photos.filter(photo => photo.albumId == album.id);
+    console.log(photosXalbum);
+    document.body.innerHTML += pohotosView(photosXalbum, photosXalbum[0])
+
+    document.querySelector('.fa-window-close').addEventListener('click', ()=>{
+        document.querySelector('.photos').remove()
+        controller()
+        document.querySelector('.user__albums-btn').click()
+    })
 }

@@ -8,6 +8,7 @@
 @import url(./blocks/user.css);
 @import url(./blocks/info.css);
 @import url(./blocks/album.css);
+@import url(./blocks/photos.css);
 
 :root{
     --color1: #333;
@@ -82,4 +83,17 @@ main{
 
 img{
     max-width: 100%;
+}
+
+::-webkit-scrollbar{
+    border-left: 2px solid var(--colorBorder);
+    width: 10px;
+    height: 10px;
+    background-color: var(--color2);
+}
+::-webkit-scrollbar-thumb {
+    margin: 5px;
+    border-radius: 10px;
+    min-height: 50px;
+    background-color: var(--iconColor);
 }
