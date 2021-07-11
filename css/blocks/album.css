@@ -9,6 +9,7 @@
     border-radius: 10px;
 }
 
+
 .Albums__title{
     width: 100%;
     text-align: center;
@@ -25,6 +26,7 @@
     display: inline-block;
     margin-bottom: 1em;
     border-radius: 10px;
+    background-color: var(--color3);
 }
 
 
@@ -37,6 +39,15 @@
 }
 .album__img:last-child{
     position: relative;
+}
+
+.album__img:last-child::before{
+    content: "";
+    position: absolute;
+    display: block;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0, .8);
 }
 
 .albums__pic-lefts{
@@ -60,18 +71,15 @@
     border-radius: 10px;
 }
 
-.album__title:hover{
+.album:hover .album__title{
     color: var(--iconColor);
-    background-color: var(--color1);
+    background-color: var(--color2);
     transition: all 100ms ease-in-out;
-
 }
 
 .album__title::first-letter{
     text-transform: uppercase;
 }
-
-
 
 @media (min-width: 768px) {
     .album__title:hover{
@@ -83,7 +91,7 @@
         position: relative;
         z-index: 100;
 
-        width: fit-content;
+        width: 100%;
         max-width: 300px;
         height: auto;
 

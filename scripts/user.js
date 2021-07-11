@@ -12,7 +12,7 @@ let photos = []
 let $userContent //this container load content when you click in a button (posts, information, albums)
 let user
 
-document.addEventListener('DOMContentLoaded', async ()=>{
+document.addEventListener('DOMContentLoaded', async()=>{
     try{
         posts = await getAllPost()
         users = await getAllUsers()
@@ -21,16 +21,24 @@ document.addEventListener('DOMContentLoaded', async ()=>{
     }catch (e) {
         console.error(e);
     }
+    load()
     controller()
+    document.querySelector('.user__posts-btn').click()
 })
 
-const controller = () =>{
-    load()
 
-    const $commentsBtn = document.querySelectorAll('.post__comments-btn')
-    $commentsBtn.forEach(element => {
-        element.addEventListener('click', handleComments)
-    })
+const load = () => {
+    const params = new URLSearchParams(window.location.search)
+    const username = params.get('username')
+    user = users.filter(user => user.username == username)
+    user = user[0]
+    userView(user, $main)
+    $userContent = document.querySelector('.user__content')
+}
+
+const controller = () =>{
+    const $postsButton = document.querySelector('.user__posts-btn')
+    $postsButton.addEventListener('click', handlePost)
 
     const $informationButton = document.querySelector('.user__information-btn')
     $informationButton.addEventListener('click', handleInfo)
@@ -38,10 +46,6 @@ const controller = () =>{
     const $albumsButton = document.querySelector('.user__albums-btn')
     $albumsButton.addEventListener('click', handleAlbums)
     
-    const $postsButton = document.querySelector('.user__posts-btn')
-    $postsButton.addEventListener('click', ()=>{controller()})
-    $postsButton.style.backgroundColor = 'var(--color3)'
-
 
     const $postUsername = document.querySelectorAll('.post__username')
     $postUsername.forEach(element =>{
@@ -54,19 +58,23 @@ const controller = () =>{
     })
 }
 
-const load = () => {
-    const params = new URLSearchParams(window.location.search)
-    const username = params.get('username')
-    user = users.filter(user => user.username == username)
-    user = user[0]
+
+function handlePost() {
+    resetUserControllsBtnStyle()
+    this.style.backgroundColor = 'var(--color3)'
+    $userContent.innerHTML = ''
+
     const userPost = posts.filter(post => post.userId == user.id)
-    userView(user, $main)
-    $userContent = document.querySelector('.user__content')
+    
     userPost.map(post =>{
         const comments = searchCommentsXidPost(post.id)
         postsView(post, user, comments, $userContent)
     })
-    
+
+    const $commentsBtn = document.querySelectorAll('.post__comments-btn')
+    $commentsBtn.forEach(element => {
+        element.addEventListener('click', handleComments)
+    })
 }
 
 function handleInfo() {
@@ -142,23 +150,42 @@ function handleAlbums(){
     })
     container.innerHTML += albumsHTML
 
-    const albumsTitle = document.querySelectorAll('.album__title')
-    albumsTitle.forEach( element => {
-        element.addEventListener('click', handleModalPhotosTitle)
+    document.querySelectorAll('.album')
+    .forEach( element => {
+        element.addEventListener('click', handleModalPhotos)
     })
+    
 }
 
 
-function handleModalPhotosTitle(){
-    let album = albums.filter( album => album.title == this.innerText.toLowerCase())
-    album = album[0]
-    const photosXalbum = photos.filter(photo => photo.albumId == album.id);
-    console.log(photosXalbum);
+async function handleModalPhotos(){
+    document.body.style.overflow = 'hidden'
+
+    const albumName = this.querySelector('.album__title').innerText.toLowerCase() 
+
+    const album = albums.filter( album => album.title == albumName)
+    const photosXalbum = photos.filter(photo => photo.albumId == album[0].id);
+
     document.body.innerHTML += pohotosView(photosXalbum, photosXalbum[0])
 
-    document.querySelector('.fa-window-close').addEventListener('click', ()=>{
+    document.querySelector('.fa-times-circle').addEventListener('click', function(){
         document.querySelector('.photos').remove()
+        document.body.style.overflow = 'unset'
+
+        //js take document as new, so i need to load again the controlls 
+        load() 
         controller()
+
+        document.querySelector('.user__albums-btn').addEventListener('click', handleAlbums)
         document.querySelector('.user__albums-btn').click()
+    })
+
+    document.querySelectorAll('.photos__container img').forEach(element => {
+        element.addEventListener('click', function(){
+            const thisThumbnailUrl = this.getAttribute('src')
+            const photo = photosXalbum.filter(photo => photo.thumbnailUrl == thisThumbnailUrl)
+            document.querySelector('.photos__active img').setAttribute('src', photo[0].url)
+            document.querySelector('.photos__title').innerText = photo[0].title
+        })
     })
 }

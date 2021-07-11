@@ -11,13 +11,15 @@ async function getAllPhotos(){
 const pohotosView = (photos, active) => {
     return `
         <div class = "photos">
-            <i class="far fa-window-close"></i>
-            <div class = "photos__active">
-                <h3 class="photos__title">${active.title}</h3>
-                <img src="${active.url}" alt="${active.title}">
-            </div>
-            <div class = "photos__container">
-                ${loadPhotos(photos)}
+            <div class="photos__content">
+                <i class="fas fa-times-circle"></i>
+                <div class = "photos__active">
+                        <h3 class="photos__title">${active.title}</h3>
+                        <img src="${active.url}" alt="${active.title}">
+                    </div>
+                    <div class = "photos__container">
+                        ${loadPhotos(photos)}
+                    </div>
             </div>
         </div>
     `
