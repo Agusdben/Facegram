@@ -159,7 +159,7 @@ function handleAlbums(){
 
 
 async function handleModalPhotos(){
-    document.body.style.overflow = 'hidden'
+    document.body.style.overflowY = 'hidden'
 
     const albumName = this.querySelector('.album__title').innerText.toLowerCase() 
 
@@ -170,7 +170,7 @@ async function handleModalPhotos(){
 
     document.querySelector('.fa-times-circle').addEventListener('click', function(){
         document.querySelector('.photos').remove()
-        document.body.style.overflow = 'unset'
+        document.body.style.overflowY = 'unset'
 
         //js take document as new, so i need to load again the controlls 
         load() 
