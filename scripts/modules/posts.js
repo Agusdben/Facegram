@@ -6,8 +6,8 @@ async function getAllPost() {
     return posts    
 }
 
-const postsView = (post, user, comments, container)=>{
-    container.innerHTML += `
+const postsView = (post, user, comments)=>{
+    return `
     <div class="post">
         <div class="post__header">
             <div class="post__img">

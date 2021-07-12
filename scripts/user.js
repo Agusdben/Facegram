@@ -23,7 +23,6 @@ document.addEventListener('DOMContentLoaded', async()=>{
     }
     load()
     controller()
-    document.querySelector('.user__posts-btn').click()
 })
 
 
@@ -39,6 +38,7 @@ const load = () => {
 const controller = () =>{
     const $postsButton = document.querySelector('.user__posts-btn')
     $postsButton.addEventListener('click', handlePost)
+    document.querySelector('.user__posts-btn').click()
 
     const $informationButton = document.querySelector('.user__information-btn')
     $informationButton.addEventListener('click', handleInfo)
@@ -62,19 +62,16 @@ const controller = () =>{
 function handlePost() {
     resetUserControllsBtnStyle()
     this.style.backgroundColor = 'var(--color3)'
-    $userContent.innerHTML = ''
-
-    const userPost = posts.filter(post => post.userId == user.id)
     
-    userPost.map(post =>{
-        const comments = searchCommentsXidPost(post.id)
-        postsView(post, user, comments, $userContent)
-    })
+    let postsHTML = ''
+    const userPost = posts.filter(post => post.userId == user.id)
+    userPost.map(post => postsHTML += postsView(post, user, searchCommentsXidPost(post.id)) )
+    $userContent.innerHTML = postsHTML
 
-    const $commentsBtn = document.querySelectorAll('.post__comments-btn')
-    $commentsBtn.forEach(element => {
+    document.querySelectorAll('.post__comments-btn').forEach(element => {
         element.addEventListener('click', handleComments)
     })
+    controller()
 }
 
 function handleInfo() {

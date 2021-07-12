@@ -46,6 +46,7 @@ const controller = () => {
 //This function is for dynamic post view, i does this because i don't have a real data base for update with new posts.
 const postsMixer = () => {
     let postsIds = []
+    let postsHTML = ''
     posts.map(post =>{
         postsIds.push(post.id)
     })
@@ -56,9 +57,9 @@ const postsMixer = () => {
         const post = posts[--postId]
         let user = users[--post.userId]
         const commentsXpost = searchCommentsXidPost(post.id)
-        const $main = document.querySelector('.main-index')
-        postsView(post, user, commentsXpost, $main)
+        postsHTML += postsView(post, user, commentsXpost)
     }while (postsIds.length > 0)
+    document.querySelector('.main-index').innerHTML = postsHTML
 }
 
 const searchCommentsXidPost = idPost => {
