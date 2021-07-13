@@ -2,6 +2,7 @@ import { getAllPost } from "./modules/posts.js";
 import { getAllUsers } from "./modules/users.js";
 import { getAllPhotos, loadPhotos } from "./modules/photos.js"
 
+const container = document.querySelector('.photos__compass-container')
 let posts
 let users
 let photos
@@ -26,36 +27,38 @@ const controller = () =>{
 const showPhotos = async () =>{
 
     const rollAndShowNewPhotos = () => {
-        for(let i = 0; i < 5000; i++){
-            let randomId = Math.floor( Math.random() * photosId.length )
-            let photo = photos[photosId[randomId]]
-            console.log(photo);
-            photosToShow.push(photo)
-            photosId.splice(randomId, 1)
-        }
+        let fragment = document.createDocumentFragment()
+        let i = 0
+        let photo
+        do{
+            let randomId = Math.floor( Math.random() * photos.length )
+            if (randomId == 5000) randomId = 4999
+            if(rolls.indexOf(randomId) == -1 ) photo = photos[randomId]
+            else continue
+            rolls.push(randomId)
 
-        document.querySelector('.photos__compass-container').innerHTML += loadPhotos(photosToShow)
-        document.querySelectorAll('img').forEach( element => {
-            element.style.display = 'grid'
-            element.style.gridTemplateColumns = 'repeat(4, 1fr)'
-            element.style.overflow = 'unset'
-        })
+            let img = new Image()
+            img.src = photo.thumbnailUrl
+            img.alt = photo.title
+
+            fragment.appendChild(img)
+            i++
+        } while (i < 100)
+
+        container.appendChild(fragment)
     }
 
 
-    let photosId = photos.map( photo => photo.id)
-    let photosToShow = []
     let photosToLoad = 50
-    rollAndShowNewPhotos(photosToShow)
+    let rolls = []
+    rollAndShowNewPhotos()
 
     window.addEventListener("scroll", function(){
         let scrollMaxY = (document.documentElement.scrollHeight - document.documentElement.clientHeight)
         let lasKnowScrollPosition = window.scrollY;
-        console.log(scrollMaxY);
         if(lasKnowScrollPosition == scrollMaxY && photosToLoad < photos.length){
-            photosToShow = []
             photosToLoad += 50
-            rollAndShowNewPhotos(photosToShow)
+            rollAndShowNewPhotos()
         }
 
     });
