@@ -63,6 +63,7 @@
 .photos__container img:hover{
     cursor: pointer;
     animation: hoverIMG .8s linear infinite alternate;
+    
 }
 
 @keyframes hoverIMG {

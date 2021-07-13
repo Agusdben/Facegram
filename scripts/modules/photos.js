@@ -8,6 +8,8 @@ async function getAllPhotos(){
     }
 }
 
+
+
 const pohotosView = (photos, active) => {
     return `
         <div class = "photos">
@@ -25,6 +27,7 @@ const pohotosView = (photos, active) => {
     `
 }
 
+
 const loadPhotos = (photos) => {
     let photosHTML = ''
     photos.map(photo =>{
@@ -33,4 +36,4 @@ const loadPhotos = (photos) => {
     return photosHTML
 }
 
-export {getAllPhotos, pohotosView}
+export {getAllPhotos, pohotosView, loadPhotos}
