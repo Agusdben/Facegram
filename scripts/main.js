@@ -27,18 +27,15 @@ const controller = () => {
 
     document.querySelector('input[type="search"]').addEventListener('keypress', ()=> alert() )
 
-    const $commentButton = document.querySelectorAll('.post__comments-btn')
-    $commentButton.forEach(element => {
+    document.querySelectorAll('.post__comments-btn').forEach(element => {
         element.addEventListener('click', handleComments)
     })
 
-    const $postUsername = document.querySelectorAll('.post__username')
-    $postUsername.forEach(element =>{
+    document.querySelectorAll('.post__username').forEach(element =>{
         element.addEventListener('click', findUserFromUsername)
     })
 
-    const $postUserimage = document.querySelectorAll('.post__userimage')
-    $postUserimage.forEach(element =>{
+    document.querySelectorAll('.post__userimage').forEach(element =>{
         element.addEventListener('click', findUserFromUserimage)
     })
 }
@@ -71,22 +68,10 @@ const searchCommentsXidPost = idPost => {
 }
 
 function handleComments(){
-    //this reference the button of comments clicked
+    //this reference button clicked
     const $comments= this.parentNode.parentNode.lastChild
-    const expanded = $comments.getAttribute('expanded')
-    if(expanded == 'false') {
-        $comments.style.display = 'block'
-        $comments.style.maxHeight = 'fit-content'
-        this.style.backgroundColor = 'var(--color3)'
-        $comments.setAttribute('expanded', 'true')
-    }
-    if(expanded == 'true'){
-        $comments.style.display = 'none'
-        $comments.style.maxHeight = '0'
-        this.style.backgroundColor = 'transparent'
-        $comments.setAttribute('expanded', 'false')
-    }
-
+    $comments.classList.toggle('comments--active')
+    this.classList.toggle('button--active')
 }
 
 function findUserFromUsername(){

@@ -9,3 +9,7 @@
     background-color: var(--color3);
     transition: background-color 100ms ease-in-out;
 }
+
+.button--active{
+    background-color: var(--color3);
+}

@@ -1,16 +1,20 @@
 .comments{
-    max-height: 0;
     display: none;
-    overflow: hidden;
     border-top: 1px solid var(--colorBorder);
     padding: .5em;
 }
 
+.comments--active{
+    display: block;
+}
+
+
 .comment__container{
     padding: .7em;
-    margin: .5em .5em;
+    margin: .5em;
     border-radius: 20px;
     background-color: var(--color3);
+
 }
 
 .comment__name::first-letter,
@@ -18,6 +22,11 @@
     text-transform: uppercase;
 }
 
+.comments hr{
+    border: 1px solid var(--iconColor);
+}
+
 .comment__body{
     padding-top: .3em;
 }
+
