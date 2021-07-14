@@ -32,7 +32,7 @@ const showPhotos = async () =>{
         let photo
         do{
             let randomId = Math.floor( Math.random() * photos.length )
-            if (randomId == 5000) randomId = 4999
+            // if (randomId == 5000) randomId = 4999
             if(rolls.indexOf(randomId) == -1 ) photo = photos[randomId]
             else continue
             rolls.push(randomId)
@@ -46,6 +46,18 @@ const showPhotos = async () =>{
         } while (i < 100)
 
         container.appendChild(fragment)
+
+    }
+
+    const checkOutside = () =>{
+        document.querySelectorAll('img').forEach( img => {
+            let bounding = img.getBoundingClientRect();
+            console.log(bounding);
+            if (bounding.top < -100 ) {
+                img.style.visibility = 'hidden'
+            }
+            else img.style.visibility = 'visible '
+        })
     }
 
 
@@ -54,13 +66,13 @@ const showPhotos = async () =>{
     rollAndShowNewPhotos()
 
     window.addEventListener("scroll", function(){
+        checkOutside()
         let scrollMaxY = (document.documentElement.scrollHeight - document.documentElement.clientHeight)
         let lasKnowScrollPosition = window.scrollY;
         if(lasKnowScrollPosition == scrollMaxY && photosToLoad < photos.length){
             photosToLoad += 50
             rollAndShowNewPhotos()
         }
-
     });
     
 
