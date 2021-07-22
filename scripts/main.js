@@ -3,6 +3,7 @@
 import { getAllPost, postsView } from "./modules/posts.js";
 import {getAllUsers} from './modules/users.js'
 import {getAllComments} from './modules/comments.js'
+import { searchUser } from "./modules/searchUser.js";
 
 const $loader = document.querySelector('.loader') 
 let posts = []
@@ -25,7 +26,7 @@ const controller = () => {
 
     postsMixer()
 
-    document.querySelector('input[type="search"]').addEventListener('keypress', ()=> alert() )
+    searchUser(users)
 
     document.querySelectorAll('.post__comments-btn').forEach(element => {
         element.addEventListener('click', handleComments)
@@ -75,12 +76,13 @@ function handleComments(){
 }
 
 function findUserFromUsername(){
-    const $userName = this.parentNode.querySelector('.post__username').innerText
+    console.log(this);
+    const $userName = this.parentNode.querySelector('[class *= __username]').innerText
     toUserPage($userName)
 }
 
 function findUserFromUserimage(){
-    const $userName = this.parentNode.parentNode.querySelector('.post__username').innerText
+    const $userName = this.parentNode.parentNode.querySelector('[class *=__username]').innerText
     toUserPage($userName)
 }
 

@@ -1,6 +1,7 @@
 import { getAllPost } from "./modules/posts.js";
 import { getAllUsers } from "./modules/users.js";
 import { getAllPhotos, loadPhotos } from "./modules/photos.js"
+import { searchUser } from "./modules/searchUser.js";
 
 const container = document.querySelector('.photos__compass-container')
 let posts
@@ -20,6 +21,8 @@ document.addEventListener('DOMContentLoaded', async ()=>{
 
 
 const controller = () =>{
+    searchUser(users)
+
     showPhotos()
 }
 

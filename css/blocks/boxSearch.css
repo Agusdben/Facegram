@@ -1,0 +1,26 @@
+.box-search{
+    position: absolute;
+    background-color: #fff;
+    top: 100%;
+    height: fit-content;
+    width: 150%;
+    overflow: hidden;
+    display: none;
+}
+
+.box-search__user{
+    display: flex;
+    padding: .5em;
+}
+
+.box-search__user:nth-child(odd){
+    background-color: var(--color2);
+}
+.box-search__user:nth-child(even){
+    background-color: var(--color3);
+}
+
+.box-search__information{
+    width: 100%;
+    text-align: left;
+}

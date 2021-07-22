@@ -10,8 +10,6 @@
     border-bottom: 1px solid var(--color3);
 }
 
-
-
 .hedaer__brand{
     color: var(--iconColor);
     font-weight: 500;
@@ -27,9 +25,9 @@
     padding: .5em;
 }
 
+
 .header__search, input{
     border: 1px solid var(--colorBorder);
-    border-radius: 15px;
     width: clamp(200px, 1vmin, 400px);
 }
 
@@ -50,6 +48,7 @@
 .header__search{
     position: relative;
 }
+
 
 @media (min-width: 768px) {
     .header > *{

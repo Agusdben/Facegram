@@ -3,6 +3,7 @@ import {getAllPost, postsView} from "./modules/posts.js"
 import {getAllUsers, userAddressInfoView, userBasicInfoView, userInformationView, userView, userWorkInfoView} from "./modules/users.js"
 import { albumsView, getAllAlbums } from "./modules/albums.js"
 import { getAllPhotos, pohotosView } from "./modules/photos.js"
+import { searchUser } from "./modules/searchUser.js"
 
 const $main = document.querySelector('.main')
 let posts = []
@@ -36,6 +37,9 @@ const load = () => {
 }
 
 const controller = () =>{
+
+    searchUser(users)
+
     const $postsButton = document.querySelector('.user__posts-btn')
     $postsButton.addEventListener('click', handlePost)
     document.querySelector('.user__posts-btn').click()

@@ -9,6 +9,7 @@
 @import url(./blocks/info.css);
 @import url(./blocks/album.css);
 @import url(./blocks/photos.css);
+@import url(./blocks/boxSearch.css);
 
 :root{
     --color1: #333;
@@ -67,6 +68,7 @@ ul{
 }
 
 input{
+    color: #fff;
     border: none;
 }
 
